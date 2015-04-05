@@ -1,0 +1,72 @@
+/* -------------------------------------------------- */
+/* Footer */
+#footer_bottom > div:nth-child(3) > ul > li:nth-child(3)	/* 加盟會員 */
+	{display:none;}
+
+/* -------------------------------------------------- */
+/* Checkout */
+	.page_checkout #confirm .content{padding-bottom:0px; margin-bottom:0px;}
+
+/* Register */
+	.page_register #content > div.information_content > form > div:nth-child(4) > table > tbody > tr:nth-child(9)	/* 所在國家︰ */
+		{display:none;}
+/*
+.page_checkout #confirm > div.checkout-content > div.payment > div.buttons
+	{overflow:hidden;}
+	.page_checkout #confirm > div.checkout-content > div.payment > div.buttons > .right
+	{padding:0px; width:100%;}
+	#confirm input[type="submit"]{width:100%; height:40px;}*/
+
+/* -------------------------------------------------- */
+
+
+#login{float:left!important; /* right:10px; position:relative; */}
+
+.box-product .wrap_price{font-size:15px;}
+
+/* .price-new{font-size:30px; line-height:50px!important;} */	/* Detail view: Product price tag */
+.description .price-old, .description .price-new{line-height:50px!important;}
+
+/* Menu */
+#menu > ul > li:first-child > a{color:black; text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+	1px 1px 0 white;}
+
+/* Index main slider */
+#slide-wrapper{width:100%!important; margin-left:0px!important;}
+#slider0 > li{width:100%!important;}
+
+/* News */
+.welcome{color:orange;}
+.home div.information_content{overflow-y:scroll; height:200px; border:5px dashed lightblue; width:98%;}
+.home div.information_content > p{margin:30px;}
+
+/* --------------------------------------------------	*/
+/* Item */
+.price-old{margin-left:5px!important;}
+.box-product > .wrap_price{width:130px;}
+.box-product > .submit{width:80px!important;}
+	.box-product > .submit > input{text-indent:-20px;}
+/* --------------------------------------------------	*/
+
+/* Refine: Product grid view */
+.product-grid > div.box-product{margin-right:11px!important; margin-left:0px!important;}
+
+/* Item box */
+.box-product .submit input{font-size:1em;}	/* btn.Add to cart */
+/*
+.box-product{height:250px;}
+.box-product .wrap_price,
+.box-product .submit
+	{position:relative; top:60px;}
+.box:last-child .box-product .wrap_price, .box:last-child .box-product .submit{}
+*/
+
+/* 2nd slider */
+.jcarousel-list > li > a > img:hover{position:relative; top:-2px;}
+
+/* --------------------------------------------------	*/
+/* Lightbox */
+#cboxTitle{padding-left:60px;}
