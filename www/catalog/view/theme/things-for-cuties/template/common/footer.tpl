@@ -107,17 +107,7 @@ if($this->config->get('customFooter_status') == 1) echo $tfc;
 </div>
 <div id="scrolltotop"></div>
 
-  <!--Start of Zopim Live Chat Script-->
-  <script type="text/javascript">
-    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s= d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set._.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8"); $.src="//v2.zopim.com/?2URzGGI9AmR05DqspRbTZPRdjOofL0Cv";z.t=+new Date;$.type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 
-    $zopim(function() {
-      if($('html').attr('lang') == 'zh_HK')
-        $zopim.livechat.setLanguage('zh_TW');
-      else
-        $zopim.livechat.setLanguage('en');
-    })
-  </script>
-  <!--End of Zopim Live Chat Script-->
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </body></html>

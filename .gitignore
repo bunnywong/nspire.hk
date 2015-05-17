@@ -1,1 +1,2 @@
-www/system/cache/
+www/system/cache/*
+www/vqmod/mods.cache
