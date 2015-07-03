@@ -545,12 +545,15 @@ $(document).ready(function() {
 
 
 
-//--></script> 
-<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
+//--></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery.maskedinput.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/xcustom.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery.timers.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery.dropshadow.js"></script>     
-  <script type="text/javascript" src="catalog/view/javascript/mbTooltip.js"></script> 
+<script type="text/javascript" src="catalog/view/javascript/jquery.dropshadow.js"></script>
+  <script type="text/javascript" src="catalog/view/javascript/mbTooltip.js"></script>
   <link rel="stylesheet" type="text/css" href="catalog/view/javascript/mbTooltip.css" media="screen">
+  <script>
+    $('body').addClass('sign-up');
+  </script>
 <?php echo $footer; ?>
