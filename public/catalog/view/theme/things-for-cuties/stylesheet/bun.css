@@ -69,3 +69,16 @@
 body.sign-up form td:first-child {
 	min-width: 80px;
 }
+
+/* Page - Search
+-------------------------------------------------- */
+body.page-search #content > #slide-wrapper,
+body.page-search #content > .welcome,
+body.page-search #content > .information_content,
+body.page-search #content > .box
+{
+  display: none;
+}
+body.page-search #content h1 ~ .information_content {
+  display: block;
+}

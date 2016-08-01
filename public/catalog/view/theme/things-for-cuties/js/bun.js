@@ -3,6 +3,10 @@ $(document).ready(function(){
 	//	--------------------------------------------------
 	//					F u n c t i o n 				//
 	//	--------------------------------------------------
+  if (window.location.href.indexOf("route=product/search&search") > -1) {
+    $('body').addClass('page-search');
+  }
+
 	function get_url(name) {
 		return decodeURI(
 			(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
