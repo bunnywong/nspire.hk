@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title']                = '英國皇家郵政';
+$_['text_title']                = '香港郵政';
 $_['text_weight']               = '重量:';
 $_['text_insurance']            = 'Insured upto:';
 $_['text_eta']                  = 'Estimated Time:';
