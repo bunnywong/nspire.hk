@@ -1,2 +1,6 @@
-www/system/cache/*
-www/vqmod/mods.cache
+# www/system/cache/*
+# www/vqmod/mods.cache
+
+system/cache/*
+image/data/*
+vqmod/mods.cache
