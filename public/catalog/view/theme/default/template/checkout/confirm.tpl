@@ -50,7 +50,19 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
       <tr>
-        <td colspan="4" class="price"><b><?php echo $total['title']; ?>:</b></td>
+        <td colspan="4" class="price">
+          <b>
+            <?php
+              if (strpos($total['title'], '(') > 0) {
+                // with weight info
+                $end_to_weight_info = strpos($total['title'], '(');
+              } else {
+                // without weight info
+                $end_to_weight_info = strlen($total['title']);
+              }
+              echo substr($total['title'], 0, $end_to_weight_info);
+          ?>:</b>
+        </td>
         <td class="total"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>

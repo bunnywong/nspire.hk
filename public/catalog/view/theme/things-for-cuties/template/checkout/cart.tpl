@@ -114,7 +114,8 @@
         <td><label for="use_reward"><?php echo $text_use_reward; ?></label></td>
       </tr>
       <?php } ?>
-      <?php if ($shipping_status) { ?>
+    <?php // Hide shipping_estimate to avoid disclose weight ?>
+    <!--<?php if ($shipping_status) { ?>
       <tr class="highlight">
         <td><?php if ($next == 'shipping') { ?>
           <input type="radio" name="next" value="shipping" id="shipping_estimate" checked="checked" />
@@ -123,7 +124,7 @@
           <?php } ?></td>
         <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
       </tr>
-      <?php } ?>
+      <?php } ?> -->
     </table>
   </div>
   <div class="cart-module">
@@ -186,19 +187,31 @@
   <?php } ?>
   <div class="cart-total">
     <table id="total">
-      <?php 
+      <?php
       $count = 0;
       $max = count($totals);
-      foreach ($totals as $total) { 
+      foreach ($totals as $total) {
       $count++;
       $extra = "";
       if($count == $max){
       $extra = " lastrow";
       }
       ?>
-      
+
       <tr>
-        <td class="right<?php echo $extra; ?>"><b><?php echo $total['title']; ?>:</b></td>
+        <td class="right<?php echo $extra; ?>">
+           <b>
+            <?php
+              if (strpos($total['title'], '(') > 0) {
+                // with weight info
+                $end_to_weight_info = strpos($total['title'], '(');
+              } else {
+                // without weight info
+                $end_to_weight_info = strlen($total['title']);
+              }
+              echo substr($total['title'], 0, $end_to_weight_info);
+          ?>:</b>
+        </td>
         <td class="right last<?php echo $extra; ?>"><?php echo $total['text']; ?></td>
       </tr>
       <?php } ?>
