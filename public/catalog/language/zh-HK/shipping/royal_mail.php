@@ -15,5 +15,5 @@ $_['text_standard_parcels']     = '標準包裹';
 $_['text_airmail']              = 'Airmail';
 $_['text_international_signed'] = 'International Signed';
 $_['text_airsure']              = 'Airsure';
-$_['text_surface']              = 'Surface';
+$_['text_surface']              = '平郵';
 ?>

@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title']                 = 'Royal Mail';
+$_['text_title']                 = 'Hongkong Post - Local';
 $_['text_weight']                = 'Weight:';
 $_['text_insurance']             = 'Insured upto:';
 $_['text_1st_class_standard']    = 'First Class Standard Post';

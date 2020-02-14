@@ -1,6 +1,5 @@
 <?php
 // Text
-//$_['text_title'] = '按重量計算運費';
-$_['text_title'] = '本地快遞';
-$_['text_weight'] = '重量︰'; 
+$_['text_title'] = '郵局取件/智郵站/非香港住址';
+$_['text_weight'] = '重量︰';
 ?>

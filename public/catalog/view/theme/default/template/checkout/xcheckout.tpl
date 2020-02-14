@@ -590,9 +590,10 @@ $('#button-shipping-address').live('click', function() {
 
 						$('#shipping-address .checkout-heading').append('<a><?php echo $text_modify; ?></a>');
 
-            // CUSTOM SCRIPT:
-            console.log(' catalog/view/theme/default/template/checkout/xcheckout.tpl')
-            // Remove weight info
+            // --------------------------------------------------
+            // START: CUSTOM SCRIPT
+
+            // Remove weight info for pop up and last confirm
             // e.g. "Hong Kong (重量︰ 1.00kg)"
             // to: "Hong Kong"
             $('#shipping-method .checkout-content label').each(function() {
@@ -605,25 +606,60 @@ $('#button-shipping-address').live('click', function() {
               }
             });
 
-            // Specific for "速遞站/智能櫃/代理站/易送遞取件" method
-            if ($('b:contains("速遞站/智能櫃/代理站/易送遞取件")').length) {
-              // Apply custom text in shipping methold
-              var html = '<div class="branch-text" style="color: #666;"><img src="/catalog/view/theme/things-for-cuties/image/icon_external-link.png" style="margin-right: 5px; width: 15px; height: 15px; bottom: 3px; position: relative;">取件地點代碼查詢<br>[<a href="http://www.sf-express.com/hk/tc/dynamic_function/S.F.Network/SF_service_center_address/" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">順豐速遞站</a>/香港郵政「智郵站」 (<a href="http://www.hongkongpost.hk/tc/receiving_mail/mcn/index.html" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">説明</a>/<a href="http://www.hongkongpost.hk/tc/about_us/network/post_offices/index.html#list" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">地址</a>)]</div>';
-              $('b:contains("速遞站/智能櫃/代理站/易送遞取件")').append(html);
+            var isEng = $('b:contains("Courier to Hong Kong Address/SF Station/Locker")').length
+            // Append remark for - 郵局取件/智郵站/非香港住址 (zh)
+            var $containMCNzh = $('b:contains("郵局取件/智郵站/非香港住址")');
+            var html = ''
+            if ($containMCNzh.length) {
+              html = `
+                <span class="branch-text" style="color: #666;">
+                  郵局取件/智郵站(<a href="http://www.hongkongpost.hk/tc/receiving_mail/mcn/index.html" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">説明</a>/<a href="http://www.hongkongpost.hk/tc/about_us/network/post_offices/index.html#list" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">地址</a>)/非香港住址(備有跟踪號)
+                </span>`;
+              $containMCNzh.html(html);
+            }
 
-              // Apply custom text in shipping methold
-              var placeholder = 'e.g\n代碼：852TD 香港銅鑼灣希雲街15號地下';
+            // Append remark for - SF express (zh)
+            var $containSFexpressEn = $('b:contains("Courier to Hong Kong Address/SF Station/Locker")');
+            var $containSFexpressZh = $('b:contains("速遞本地住宅/智能櫃/代理站")');
+            if ($containSFexpressEn.length || $containSFexpressZh.length) {
+              if (isEng) {
+                 html = '<span class="branch-text" style="color: #666;"> (<a href="http://www.sf-express.com/hk/en/dynamic_function/S.F.Network/SF_service_center_address/" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">SF express branch</a>)</span>';
+                 $containSFexpressEn.after(html);
+              } else {
+                html = '<span class="branch-text" style="color: #666;"> (<a href="http://www.sf-express.com/hk/tc/dynamic_function/S.F.Network/SF_service_center_address/" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">順豐速運站地址</a>)</span>';
+                $containSFexpressZh.after(html);
+              }
+            }
+
+            // Dynamic Placeholder
+            function updatePlaceholder (currentShippingMethod) {
+              var placeholder = '';
+              switch (currentShippingMethod) {
+                // 智郵站
+                case 'weight.weight_5':
+                  placeholder = isEng ? 'Post Office for parcel collection\nE.g. Tsim Sha Tsui Post Office' : '取件郵局資料\ne.g. 中環郵政總局'; break;
+                // SF Express
+                case 'citylink.citylink':
+                  placeholder = isEng ? 'e.g\nBranch code: 852TD G/F, 15 Haven Street, Causeway Bay' : 'e.g\n代碼：852TD 香港銅鑼灣希雲街15號地下';
+                  break;
+                default:
+                  placeholder = ''
+                  break;
+              }
               $('textarea[name="comment"]').attr('placeholder', placeholder)
             }
-            if ($('b:contains("Citylink")').length) {
-              // Apply custom text in shipping methold
-              var html = '<div class="branch-text" style="color: #666;"><img src="/catalog/view/theme/things-for-cuties/image/icon_external-link.png" style="margin-right: 5px; width: 15px; height: 15px; bottom: 3px; position: relative;">Pick-up Service Location Enquiry<br>[<a href="http://www.sf-express.com/hk/en/dynamic_function/S.F.Network/SF_service_center_address/" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">SF express branch</a>/Post Office and "iPostal Station" (<a href="http://www.hongkongpost.hk/en/receiving_mail/mcn/index.html" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">tutorial</a>/<a href="http://www.hongkongpost.hk/en/about_us/network/post_offices/index.html#list" target="_blank" style="font-size: 12px; border-bottom: 1px solid;">address</a>)]</div>';
-              $('b:contains("Citylink")').append(html);
-
-              // Apply custom text in shipping methold
-              var placeholder = 'e.g\nBranch code: 852TD G/F, 15 Haven Street, Causeway Bay';
-              $('textarea[name="comment"]').attr('placeholder', placeholder)
+            var currentShippingMethod = $("input[name='shipping_method']:checked").val();
+            // Get default for SF Express('citylink') OR 智郵站('weight')
+            if (currentShippingMethod.indexOf('citylink') || currentShippingMethod.indexOf('weight')) {
+              updatePlaceholder(currentShippingMethod);
             }
+            // Upate placeholder by radio change
+            $("input[name='shipping_method']").change(function() {
+              var currentShippingMethod =  $(this).val();
+              updatePlaceholder(currentShippingMethod);
+            });
+            // END: CUSTOM SCRIPT
+            // --------------------------------------------------
 
 						$.ajax({
 							url: 'index.php?route=checkout/xshipping_address',
@@ -1046,7 +1082,7 @@ function quickConfirm(module){
 		}
 	});
 }
-//--></script>
+</script>
 <style type="text/css">
 <!--
 .xten label {
